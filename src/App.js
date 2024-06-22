@@ -10,9 +10,9 @@ function App() {
   return (
     <>
       <Router>
-        <Navar />
+        <Navar title = "vikash" />
         <Routes>
-          <Route exact path="/home" element={<Home />}></Route>
+          <Route exact path="/home" element={<Home  />}></Route>
           <Route exact path="/about" element={<About />} />
         </Routes>
       </Router>
