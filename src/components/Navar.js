@@ -26,9 +26,9 @@ function Navar(props) {
             <ul className="navbar-nav">
               <li className="nav-item">
                 <Link
-                  className={`nav-link ${location.pathname === "/home"? "active": ""}`}
+                  className={`nav-link ${location.pathname === "/"? "active": ""}`}
                   aria-current="page"
-                  to="/home"
+                  to="/"
                 >
                   Home
                 </Link>
