@@ -5,15 +5,30 @@ import Home from "./components/Home";
 import Alert from "./components/Alert";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 function App() {
+  const [mode, setMode] = useState("light");
+  const changeMode = ()=>{
+    if(mode === "light"){
+      setMode("dark")
+      document.querySelector("body").style.backgroundColor = "#071952"
+      document.querySelector("body").style.color = "#EBF4F6"
+    }else{
+      setMode("light")
+       document.querySelector("body").style.backgroundColor = "white"
+       document.querySelector("body").style.color = "black"
+
+    }
+  }
+
   return (
     <>
       <Router>
-        <Navar title = "vikash" />
+        <Navar changeMode = {changeMode} mode= {mode} title = "vikash" />
         <Routes>
-          <Route exact path="/home" element={<Home  />}></Route>
-          <Route exact path="/about" element={<About />} />
+          <Route exact path="/home" element={<Home mode={mode} />}></Route>
+          <Route exact path="/about" element={<About mode = {mode} />} />
         </Routes>
       </Router>
     </>

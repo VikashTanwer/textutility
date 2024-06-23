@@ -1,14 +1,15 @@
 import React from "react";
-import {Link} from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
 
 function Navar(props) {
-    const {title} = props;
+  const location = useLocation()
+  const { title, changeMode, mode } = props;
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className={`navbar navbar-expand-lg navbar-${mode === "light"? "light" : "dark"} bg-${mode === "light"? "light" : "dark"}`}>
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-           {title}
+            {title}
           </Link>
           <button
             className="navbar-toggler"
@@ -24,7 +25,11 @@ function Navar(props) {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/home">
+                <Link
+                  className={`nav-link ${location.pathname === "/home"? "active": ""}`}
+                  aria-current="page"
+                  to="/home"
+                >
                   Home
                 </Link>
               </li>
@@ -34,22 +39,20 @@ function Navar(props) {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/about">
+                <Link className={`nav-link ${location.pathname === "/about"? "active": ""}`} to="/about">
                   About
                 </Link>
               </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link disabled"
-                  href="/"
-                  tabIndex="-1"
-                  aria-disabled="true"
-                >
-                  Disabled
-                </a>
-              </li>
             </ul>
           </div>
+                <div className="form-check form-switch">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="flexSwitchCheckDefault"
+                    onClick={changeMode}
+                  />
+                </div>
         </div>
       </nav>
     </>
